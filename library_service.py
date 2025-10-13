@@ -151,10 +151,10 @@ def calcFee(days_overdue: int) -> float:
     if days_overdue <= 0:
         return 0.0
     if days_overdue < 7:
-        return 0.5 * days_overdue
+        return (0.5 * days_overdue)
     if days_overdue >= 19:
         return 15.0
-    return 3.5 + (days_overdue - 7)
+    return (3.5 + (days_overdue - 7))
 
 def search_books_in_catalog(search_term: str, search_type: str) -> List[Dict]:
     """

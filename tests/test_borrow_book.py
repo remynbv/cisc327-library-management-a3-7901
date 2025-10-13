@@ -2,7 +2,8 @@ import pytest
 from datetime import datetime, timedelta
 from library_service import (
     borrow_book_by_patron,
-    add_book_to_catalog
+    add_book_to_catalog, 
+    get_book_by_isbn
 )
 from database import (
     insert_borrow_record
@@ -10,8 +11,9 @@ from database import (
 
 def test_borrow_book_valid_input(): 
     """Test borrowing a book with valid input."""
-    add_book_to_catalog("Test Book 31", "Author 31", 3131313131313, 31)
-    success, message = borrow_book_by_patron("313131", 31)
+    add_book_to_catalog("Test Book 32", "Author 32", 3131313131315, 32)
+    book = get_book_by_isbn(3131313131315)
+    success, message = borrow_book_by_patron("323232", book['id'])
     
     assert success == True
     assert "Successfully borrowed" in message

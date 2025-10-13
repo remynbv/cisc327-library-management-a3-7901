@@ -17,8 +17,8 @@ def test_calculate_fees_book_not_overdue():
 
 def test_calculate_fees_book_1_day_overdue():
     """Calculate fees for book 1 day overdue."""
-    insert_borrow_record("444444", 4, datetime.now() + timedelta(days=15), datetime.now() - timedelta(days=1))
-    result = calculate_late_fee_for_book("444444", 4)
+    insert_borrow_record("777777", 11, datetime.now() + timedelta(days=15), datetime.now() - timedelta(days=1))
+    result = calculate_late_fee_for_book("777777", 11)
     
     assert result['fee_amount'] == 0.5
     assert result['days_overdue'] == 1

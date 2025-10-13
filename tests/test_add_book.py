@@ -5,7 +5,7 @@ from library_service import (
 
 def test_add_book_valid_input(): 
     """Test adding a book with valid input."""
-    success, message = add_book_to_catalog("Test Book 2", "Test Author 2", "1234567890124", 6)
+    success, message = add_book_to_catalog("Test Book 96", "Test Author 96", "1234567890128", 58)
     
     assert success == True
     assert "successfully added" in message.lower()

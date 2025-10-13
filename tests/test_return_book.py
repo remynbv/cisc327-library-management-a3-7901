@@ -2,14 +2,16 @@ import pytest
 from library_service import (
     return_book_by_patron,
     borrow_book_by_patron,
-    add_book_to_catalog
+    add_book_to_catalog, 
+    get_book_by_isbn
 )
 
-def test_return_book_valid_input(): # Failed: TODO: Fixed
+def test_return_book_valid_input(): 
     """Test borrowing a book with valid input."""
-    add_book_to_catalog("Test Book 32", "Author 32", 3232323232323, 32)
-    borrow_book_by_patron("939393", 32)
-    success, message = return_book_by_patron("939393", 32)
+    add_book_to_catalog("Test Book 33", "Author 33", 3232323232324, 33)
+    book = get_book_by_isbn(3232323232323)
+    borrow_book_by_patron("939393", book['id'])
+    success, message = return_book_by_patron("939393", book['id'])
     
     assert success == True
     assert "Book returned" in message
