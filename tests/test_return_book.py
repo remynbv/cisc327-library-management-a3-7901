@@ -9,7 +9,7 @@ from library_service import (
 def test_return_book_valid_input(): 
     """Test borrowing a book with valid input."""
     add_book_to_catalog("Test Book 33", "Author 33", 3232323232324, 33)
-    book = get_book_by_isbn(3232323232323)
+    book = get_book_by_isbn(3232323232324)
     borrow_book_by_patron("939393", book['id'])
     success, message = return_book_by_patron("939393", book['id'])
     
