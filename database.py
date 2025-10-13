@@ -56,9 +56,10 @@ def add_sample_data():
     if book_count == 0:
         # Add sample books
         sample_books = [
+            ('Dune', 'Frank Herbert', '9780101010101', 4),
             ('The Great Gatsby', 'F. Scott Fitzgerald', '9780743273565', 3),
             ('To Kill a Mockingbird', 'Harper Lee', '9780061120084', 2),
-            ('1984', 'George Orwell', '9780451524935', 1)
+            ('1984', 'George Orwell', '9780451524935', 1), 
         ]
         
         for title, author, isbn, copies in sample_books:
@@ -67,13 +68,34 @@ def add_sample_data():
                 VALUES (?, ?, ?, ?, ?)
             ''', (title, author, isbn, copies, copies))
         
-        # Make 1984 unavailable by adding a borrow record
+        # Make 1984 and some Dune unavailable by adding a borrow record
         conn.execute('''
             INSERT INTO borrow_records (patron_id, book_id, borrow_date, due_date)
             VALUES (?, ?, ?, ?)
         ''', ('123456', 3, 
               (datetime.now() - timedelta(days=5)).isoformat(),
               (datetime.now() + timedelta(days=9)).isoformat()))
+        
+        conn.execute('''
+            INSERT INTO borrow_records (patron_id, book_id, borrow_date, due_date)
+            VALUES (?, ?, ?, ?)
+        ''', ('444444', 4, 
+              (datetime.now() - timedelta(days=15)).isoformat(),
+              (datetime.now() - timedelta(days=1)).isoformat()))
+        
+        conn.execute('''
+            INSERT INTO borrow_records (patron_id, book_id, borrow_date, due_date)
+            VALUES (?, ?, ?, ?)
+        ''', ('555555', 4, 
+              (datetime.now() - timedelta(days=23)).isoformat(),
+              (datetime.now() - timedelta(days=9)).isoformat()))
+        
+        conn.execute('''
+            INSERT INTO borrow_records (patron_id, book_id, borrow_date, due_date)
+            VALUES (?, ?, ?, ?)
+        ''', ('666666', 4, 
+              (datetime.now() - timedelta(days=55)).isoformat(),
+              (datetime.now() - timedelta(days=41)).isoformat()))
         
         # Update available copies for 1984
         conn.execute('UPDATE books SET available_copies = 0 WHERE id = 3')
@@ -167,6 +189,7 @@ def insert_borrow_record(patron_id: str, book_id: int, borrow_date: datetime, du
         conn.close()
         return True
     except Exception as e:
+        print(f"Error inserting borrow record: {e}")
         conn.close()
         return False
 

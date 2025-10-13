@@ -3,7 +3,7 @@ Main Flask application entry point for the Library Management System.
 
 This module provides the application factory pattern for creating Flask app instances.
 Routes are organized in separate blueprint modules in the routes package.
-"""
+""" 
 
 from flask import Flask
 from database import init_database, add_sample_data
