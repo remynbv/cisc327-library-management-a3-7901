@@ -1,11 +1,11 @@
 import pytest
-from library_service import (
+from services.library_service import (
     add_book_to_catalog
 )
 
 def test_add_book_valid_input(): 
     """Test adding a book with valid input."""
-    success, message = add_book_to_catalog("Test Book 96", "Test Author 96", "1234567890128", 58)
+    success, message = add_book_to_catalog("Test Book 99", "Test Author 99", "1234567890199", 61)
     
     assert success == True
     assert "successfully added" in message.lower()

@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime, timedelta
-from library_service import (
+from services.library_service import (
     borrow_book_by_patron,
     add_book_to_catalog, 
     get_book_by_isbn
@@ -13,7 +13,7 @@ def test_borrow_book_valid_input():
     """Test borrowing a book with valid input."""
     add_book_to_catalog("Test Book 32", "Author 32", 3131313131315, 32)
     book = get_book_by_isbn(3131313131315)
-    success, message = borrow_book_by_patron("323232", book['id'])
+    success, message = borrow_book_by_patron("232323", book['id'])
     
     assert success == True
     assert "Successfully borrowed" in message
