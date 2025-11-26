@@ -151,3 +151,4 @@ def test_refund_fee_network_error():
     assert "Refund processing error" in msg
     assert "Network Error" in msg
     mockGate.process_payment.assert_not_called()
+
