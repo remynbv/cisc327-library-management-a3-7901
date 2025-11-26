@@ -23,6 +23,10 @@ jobs:
             python -m pip install --upgrade pip
             pip install pytest pytest-cov
             pip install -r requirements.txt
+            npm install
+
+        - name: Install Playwright Browsers
+          run: npx playwright install --with-deps
 
         - name: Initialize database
           run: |
